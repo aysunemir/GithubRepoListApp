@@ -47,4 +47,6 @@ object TestModels {
 
     val testFavorite1 = Favorite(1, "aysunemir")
 
+    val testFavorite2 = Favorite(2, "aysunemir")
+
 }
