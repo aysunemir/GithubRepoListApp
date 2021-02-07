@@ -3,4 +3,6 @@
     <string name="submit">Submit</string>
     <string name="username">Username</string>
     <string name="no_repository_found">No repository found</string>
+    <string name="star_count">Stars: %d</string>
+    <string name="open_issue_count">Open Issue Count: %d</string>
 </resources>

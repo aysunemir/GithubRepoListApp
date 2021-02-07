@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="repo"
+            type="com.aemir.githubrepolist.entities.Repo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_16"
+        tools:context=".RepoDetailFragment">
+
+        <ImageView
+            android:id="@+id/iv_ownerAvatar"
+            imageUrl="@{repo.ownerAvatarUrl}"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tv_ownerName"
+            style="@style/TextAppearance.AppCompat.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_16"
+            android:text="@{repo.ownerName}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_ownerAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Owner" />
+
+        <TextView
+
+            android:id="@+id/tv_repoStarCount"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="@{@string/star_count(repo.starCount)}"
+            app:layout_constraintTop_toBottomOf="@id/iv_ownerAvatar"
+            tools:text="@string/star_count" />
+
+        <TextView
+            android:id="@+id/tv_repoOpenIssueCount"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="@{@string/open_issue_count(repo.openIssueCount)}"
+            app:layout_constraintTop_toBottomOf="@id/tv_repoStarCount"
+            tools:text="@string/open_issue_count" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

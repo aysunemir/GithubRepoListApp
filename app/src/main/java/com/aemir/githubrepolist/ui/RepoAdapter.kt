@@ -12,6 +12,12 @@ import javax.inject.Inject
 class RepoAdapter @Inject constructor() :
     ListAdapter<Repo, RepoAdapter.RepoViewHolder>(RepoDiffCallback()) {
 
+    private lateinit var clickListener: RepoClickListener
+
+    fun setClickListener(clickListener: RepoClickListener) {
+        this.clickListener = clickListener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ItemRepoBinding.inflate(layoutInflater, parent, false)
@@ -20,15 +26,18 @@ class RepoAdapter @Inject constructor() :
 
     override fun onBindViewHolder(holder: RepoViewHolder, position: Int) {
         val repo = getItem(position)
-        holder.bind(repo)
+        holder.bind(repo, clickListener)
     }
 
     class RepoViewHolder constructor(private val binding: ItemRepoBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(repo: Repo) {
+        fun bind(repo: Repo, clickListener: RepoClickListener) {
             binding.apply {
                 this.repoName = repo.repoName
+                root.setOnClickListener {
+                    clickListener.onClickRepo(repo)
+                }
                 executePendingBindings()
             }
         }
@@ -40,4 +49,8 @@ class RepoDiffCallback : DiffUtil.ItemCallback<Repo>() {
 
     override fun areContentsTheSame(oldItem: Repo, newItem: Repo): Boolean =
         oldItem.repoId == newItem.repoId
+}
+
+interface RepoClickListener {
+    fun onClickRepo(repo: Repo)
 }
