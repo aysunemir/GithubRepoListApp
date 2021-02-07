@@ -28,8 +28,10 @@ class RepoListViewModel @ViewModelInject constructor(
     val repoList: LiveData<MutableList<Repo>> = _repoList
 
     fun getRepos(username: String) = viewModelScope.launch {
-        getUserReposUseCase.getUserRepos(username).collect { resource ->
-            handleResponse(resource)
+        if (username.isNotEmpty()) {
+            getUserReposUseCase.getUserRepos(username).collect { resource ->
+                handleResponse(resource)
+            }
         }
     }
 
