@@ -1,9 +1,10 @@
 package com.aemir.githubrepolist.mappers
 
-import com.aemir.githubrepolist.entities.Repo
 import com.aemir.githubrepolist.entities.ApiRepo
+import com.aemir.githubrepolist.entities.Repo
+import javax.inject.Inject
 
-class RepoMapper : EntityMapper<ApiRepo, Repo> {
+class RepoMapper @Inject constructor() : EntityMapper<ApiRepo, Repo> {
 
     override fun mapFrom(entity: ApiRepo): Repo =
         Repo(

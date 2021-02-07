@@ -4,6 +4,9 @@ import com.aemir.githubrepolist.BuildConfig
 import com.aemir.githubrepolist.api.GithubService
 import com.aemir.githubrepolist.api.RemoteDataSource
 import com.aemir.githubrepolist.api.RemoteDataSourceImpl
+import com.aemir.githubrepolist.mappers.RepoMapper
+import com.aemir.githubrepolist.repositories.GithubRepoRepository
+import com.aemir.githubrepolist.repositories.GithubRepoRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,4 +46,15 @@ class AppModule {
     @Provides
     fun provideRemoteDataSource(service: GithubService): RemoteDataSource =
         RemoteDataSourceImpl(service)
+
+    @Singleton
+    @Provides
+    fun provideGithubRepoRepository(
+        remoteDataSource: RemoteDataSource,
+        mapper: RepoMapper
+    ): GithubRepoRepository =
+        GithubRepoRepositoryImpl(
+            remoteDataSource,
+            mapper
+        )
 }
