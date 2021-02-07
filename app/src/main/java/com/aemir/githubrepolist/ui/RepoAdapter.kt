@@ -34,10 +34,8 @@ class RepoAdapter @Inject constructor() :
 
         fun bind(repo: Repo, clickListener: RepoClickListener) {
             binding.apply {
-                this.repoName = repo.repoName
-                root.setOnClickListener {
-                    clickListener.onClickRepo(repo)
-                }
+                this.repo = repo
+                this.clickListener = clickListener
                 executePendingBindings()
             }
         }

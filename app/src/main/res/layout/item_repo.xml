@@ -5,29 +5,43 @@
     <data>
 
         <variable
-            name="repoName"
-            type="String" />
+            name="repo"
+            type="com.aemir.githubrepolist.entities.Repo" />
 
         <variable
             name="clickListener"
             type="com.aemir.githubrepolist.ui.RepoClickListener" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
-        android:padding="@dimen/space_16">
+        android:onClick="@{() -> clickListener.onClickRepo(repo)}"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/space_16"
+        android:paddingBottom="@dimen/space_16">
 
         <TextView
             style="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{repoName}"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@id/iv_favorite"
+            android:text="@{repo.repoName}"
             tools:text="Repo Name" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_favorite"
+            visible="@{repo.favorite}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_star_small" />
+
+    </RelativeLayout>
 
 </layout>
