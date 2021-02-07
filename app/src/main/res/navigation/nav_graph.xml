@@ -7,6 +7,6 @@
     <fragment
         android:id="@+id/repoListFragment"
         android:name="com.aemir.githubrepolist.ui.RepoListFragment"
-        android:label="Home"
+        android:label="@string/app_name"
         tools:layout="@layout/repo_list_fragment" />
 </navigation>

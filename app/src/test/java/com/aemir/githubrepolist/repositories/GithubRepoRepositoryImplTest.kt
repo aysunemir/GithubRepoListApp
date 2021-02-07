@@ -11,7 +11,7 @@ import com.aemir.githubrepolist.api.RemoteDataSourceImpl
 import com.aemir.githubrepolist.api.Success
 import com.aemir.githubrepolist.entities.ApiRepo
 import com.aemir.githubrepolist.mappers.RepoMapper
-import com.aemir.githubrepolist.util.Constants
+import com.aemir.githubrepolist.util.Constants.SERVICE_ERROR
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.drop
@@ -73,10 +73,9 @@ class GithubRepoRepositoryImplTest {
 
             `when`(remoteDataSource.getUserRepos("aysunemir")).thenReturn(expectedResponse)
 
-            val result = repository.getUserRepos("aysunemir").drop(1).first() as Error
-            val expectedMessage = Constants.NO_REPO_FOUND
+            val result = repository.getUserRepos("aysunemir").drop(1).first() as Success
 
-            assertThat(result).isEqualTo(Error(expectedMessage))
+            assertThat(result).isEqualTo(Success(null))
         }
 
     @Test
@@ -87,7 +86,7 @@ class GithubRepoRepositoryImplTest {
             `when`(remoteDataSource.getUserRepos("aysunemir")).thenReturn(expectedResponse)
 
             val result = repository.getUserRepos("aysunemir").drop(1).first() as Error
-            val expectedMessage = Constants.NO_REPO_FOUND
+            val expectedMessage = SERVICE_ERROR
 
             assertThat(result).isEqualTo(Error(expectedMessage))
         }
