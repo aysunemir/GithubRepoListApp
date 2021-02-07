@@ -1,6 +1,7 @@
 package com.aemir.githubrepolist
 
 import com.aemir.githubrepolist.entities.ApiRepo
+import com.aemir.githubrepolist.entities.Favorite
 import com.aemir.githubrepolist.entities.Owner
 import com.aemir.githubrepolist.entities.Repo
 
@@ -41,4 +42,7 @@ object TestModels {
         openIssueCount = 2,
         starCount = 6
     )
+
+    val testFavorite1 = Favorite(1, "aysunemir")
+
 }

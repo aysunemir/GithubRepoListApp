@@ -18,7 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.aemir.githubrepolist.HiltTestRunner"
     }
 
     buildTypes {
@@ -48,6 +48,19 @@ android {
     dataBinding {
         enabled = true
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
 }
 
 dependencies {
@@ -61,11 +74,13 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
     // Architecture Components
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     //Dagger - Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
@@ -87,7 +102,7 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
 
     // Unit Test
-    testImplementation "com.google.truth:truth:1.1.1"
+    testImplementation "com.google.truth:truth:$truth_version"
     testImplementation 'junit:junit:4.13.1'
     // Mockito
     testImplementation "org.mockito:mockito-core:$mockito_version"
@@ -100,6 +115,12 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:2.1.0"
 
     // Instrumentation Test
+    androidTestImplementation "androidx.arch.core:core-testing:2.1.0"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2"
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation "com.google.truth:truth:$truth_version"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // Room Test
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$hilt_test_version"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$hilt_test_version"
 }
