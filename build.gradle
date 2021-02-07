@@ -5,6 +5,7 @@ buildscript {
     ext.retrofit_version = '2.9.0'
     ext.coroutines_version = '1.4.2'
     ext.mockito_version = '3.7.7'
+    ext.navigation_version = '2.3.3'
     repositories {
         google()
         jcenter()
