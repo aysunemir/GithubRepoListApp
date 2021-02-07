@@ -31,7 +31,8 @@ object TestModels {
         ownerName = "aysunemir",
         ownerAvatarUrl = "https://avatars.githubusercontent.com/u/20208773?v=4",
         openIssueCount = 3,
-        starCount = 5
+        starCount = 5,
+        favorite = true
     )
 
     val testRepo2 = Repo(
@@ -40,7 +41,8 @@ object TestModels {
         ownerName = "aysunemir",
         ownerAvatarUrl = "https://avatars.githubusercontent.com/u/20208773?v=4",
         openIssueCount = 2,
-        starCount = 6
+        starCount = 6,
+        favorite = false
     )
 
     val testFavorite1 = Favorite(1, "aysunemir")

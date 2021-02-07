@@ -6,7 +6,10 @@ import com.aemir.githubrepolist.BuildConfig
 import com.aemir.githubrepolist.api.GithubService
 import com.aemir.githubrepolist.api.RemoteDataSource
 import com.aemir.githubrepolist.api.RemoteDataSourceImpl
+import com.aemir.githubrepolist.db.FavoriteDao
 import com.aemir.githubrepolist.db.FavoriteDatabase
+import com.aemir.githubrepolist.db.LocalDataSource
+import com.aemir.githubrepolist.db.LocalDataSourceImpl
 import com.aemir.githubrepolist.mappers.RepoMapper
 import com.aemir.githubrepolist.repositories.GithubRepoRepository
 import com.aemir.githubrepolist.repositories.GithubRepoRepositoryImpl
@@ -56,10 +59,12 @@ class AppModule {
     @Provides
     fun provideGithubRepoRepository(
         remoteDataSource: RemoteDataSource,
+        localDataSource: LocalDataSource,
         mapper: RepoMapper
     ): GithubRepoRepository =
         GithubRepoRepositoryImpl(
             remoteDataSource,
+            localDataSource,
             mapper
         )
 
@@ -78,4 +83,11 @@ class AppModule {
     fun provideFavoriteDao(
         database: FavoriteDatabase
     ) = database.favoriteDao()
+
+    @Singleton
+    @Provides
+    fun provideLocalDataSource(
+        favoriteDao: FavoriteDao,
+    ): LocalDataSource = LocalDataSourceImpl(favoriteDao)
+
 }

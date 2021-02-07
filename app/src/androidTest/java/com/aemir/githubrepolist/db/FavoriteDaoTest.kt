@@ -64,7 +64,7 @@ class FavoriteDaoTest {
     }
 
     @Test
-    fun test_getFavorites() = runBlockingTest {
+    fun test_getFavoriteIdsByUser() = runBlockingTest {
         favoriteDao.insertFavorite(testFavorite1)
         favoriteDao.insertFavorite(testFavorite2)
         favoriteDao.insertFavorite(testFavorite3)

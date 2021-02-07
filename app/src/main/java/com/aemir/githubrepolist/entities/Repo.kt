@@ -11,4 +11,5 @@ data class Repo(
     val ownerAvatarUrl: String,
     val starCount: Int,
     val openIssueCount: Int,
+    var favorite: Boolean = false
 ) : Parcelable
