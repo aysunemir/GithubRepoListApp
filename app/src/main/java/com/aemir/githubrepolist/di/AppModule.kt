@@ -14,6 +14,7 @@ import com.aemir.githubrepolist.mappers.RepoMapper
 import com.aemir.githubrepolist.repositories.GithubRepoRepository
 import com.aemir.githubrepolist.repositories.GithubRepoRepositoryImpl
 import com.aemir.githubrepolist.util.Constants.DATABASE_NAME
+import com.aemir.githubrepolist.util.NetworkUtil
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,12 +61,14 @@ class AppModule {
     fun provideGithubRepoRepository(
         remoteDataSource: RemoteDataSource,
         localDataSource: LocalDataSource,
-        mapper: RepoMapper
+        mapper: RepoMapper,
+        networkUtil: NetworkUtil
     ): GithubRepoRepository =
         GithubRepoRepositoryImpl(
             remoteDataSource,
             localDataSource,
-            mapper
+            mapper,
+            networkUtil
         )
 
     @Singleton
